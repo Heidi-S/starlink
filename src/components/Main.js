@@ -3,6 +3,7 @@ import SatSetting from './SatSetting'
 import SatelliteList from './SatelliteList'
 import axios from 'axios';
 import {NEARBY_SATELLITE, SAT_API_KEY, STARLINK_CATEGORY} from '../constants'
+import WorldMap from './WorldMap'
 
 class Main extends Component {
     constructor(){
@@ -43,16 +44,23 @@ class Main extends Component {
 
     }
 
+    showMap = () => {
+        console.log('show on the map');
+    }
+
 
     render() {
+        const { satInfo } = this.state;
         return (
             <div className='main'>
                 <div className="left-side">
                     <SatSetting onShow = {this.showNearbySatellite} />
-                    <SatelliteList />
+                    <SatelliteList satInfo={satInfo}
+                                   onShowMap={this.showMap}
+                    />
                 </div>
                 <div className="right-side">
-                    right
+                    <WorldMap />
                 </div>
             </div>
         );
